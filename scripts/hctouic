@@ -1,0 +1,22 @@
+#!/usr/bin/php
+<?php
+
+if (count($argv) < 2) {
+	die('write hex color code');
+}
+
+$hex_color = $argv[1];
+
+$rgb = str_split($hex_color, 2);
+$colors = array();
+foreach ($rgb as $k => $color) {
+	$colors["{{$k}}"] = round(hexdec($color) / 255.0, 3);
+}
+
+$code = str_replace(array_keys($colors), array_values($colors), '[UIColor colorWithRed:{0} green:{1} blue:{2} alpha:1.0]');
+
+fputs(fopen('php://output', 'w+'), $code);
+
+/**
+* end of file
+*/
