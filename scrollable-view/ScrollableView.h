@@ -10,7 +10,8 @@
 
 @interface ScrollableView : UIScrollView
 
-@property (weak, nonatomic) UIView* lowestView;
 @property (assign, nonatomic) CGSize contentSizePadding;
+
+- (void)scrollToSubview:(UIView*)subView;
 
 @end
