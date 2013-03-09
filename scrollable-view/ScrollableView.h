@@ -13,5 +13,8 @@
 @property (assign, nonatomic) CGSize contentSizePadding;
 
 - (void)scrollToSubview:(UIView*)subView;
+- (void)addSubview:(UIView *)view recalc:(BOOL)recalc;
+
+- (void)recalcContentSizeWithViews:(NSArray*)views;
 
 @end

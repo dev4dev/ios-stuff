@@ -37,11 +37,34 @@ dealloc
 }
 
 - (void)
-addSubview:(UIView *)view
+addSubview:(UIView *)view recalc:(BOOL)recalc
 {
-	CGRect frame = view.frame;
-	CGFloat maxX = CGRectGetMaxX(frame);
-	CGFloat maxY = CGRectGetMaxY(frame);
+	if (recalc) {
+		CGRect frame = view.frame;
+		CGFloat maxX = CGRectGetMaxX(frame);
+		CGFloat maxY = CGRectGetMaxY(frame);
+		if (self.contentSize.width > maxX) {
+			maxX = self.contentSize.width;
+		}
+		if (self.contentSize.height > maxY) {
+			maxY = self.contentSize.height;
+		}
+		self.contentSize = CGSizeMake(maxX + self.contentSizePadding.width, maxY + self.contentSizePadding.height);
+	}
+	[self addSubview:view];
+}
+
+- (void)
+recalcContentSizeWithViews:(NSArray*)views
+{
+	CGFloat maxX = 0;
+	CGFloat maxY = 0;
+	for (UIView* view in views) {
+		CGRect frame = view.frame;
+		maxX = MAX(maxX, CGRectGetMaxX(frame));
+		maxY = MAX(maxY, CGRectGetMaxY(frame));
+	}
+
 	if (self.contentSize.width > maxX) {
 		maxX = self.contentSize.width;
 	}
@@ -49,7 +72,6 @@ addSubview:(UIView *)view
 		maxY = self.contentSize.height;
 	}
 	self.contentSize = CGSizeMake(maxX + self.contentSizePadding.width, maxY + self.contentSizePadding.height);
-	[super addSubview:view];
 }
 
 - (void)
