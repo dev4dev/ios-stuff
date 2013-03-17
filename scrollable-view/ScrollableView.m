@@ -10,6 +10,7 @@
 
 @interface ScrollableView() {
 	CGFloat _keyBoardOffset;
+	CGFloat _bottomOffset;
 }
 
 - (void)keyboardWillShow:(NSNotification*)notification;
@@ -90,7 +91,7 @@ keyboardWillHide:(NSNotification *)notification
 	[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&duration];
 	
 	CGRect frame = self.frame;
-	frame.size.height += _keyBoardOffset;
+	frame.size.height += _keyBoardOffset - _bottomOffset;
 
 	[UIView animateWithDuration:duration animations:^{
 		self.frame = frame;
@@ -106,10 +107,12 @@ keyboardWillShow:(NSNotification *)notification
 	NSTimeInterval duration = 0.0;
 	[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&duration];
 
+	CGRect gFrame = [[UIApplication sharedApplication].keyWindow convertRect:self.frame fromView:self];
+	_bottomOffset = CGRectGetHeight([UIScreen mainScreen].bounds) - CGRectGetMaxY(gFrame);
 	_keyBoardOffset = CGRectGetHeight(kbFrame);
 
 	CGRect frame = self.frame;
-	frame.size.height -= _keyBoardOffset;
+	frame.size.height -= _keyBoardOffset - _bottomOffset;
 	[UIView animateWithDuration:duration animations:^{
 		self.frame = frame;
 	}];
