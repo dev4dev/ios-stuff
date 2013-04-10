@@ -66,12 +66,6 @@ recalcContentSizeWithViews:(NSArray*)views
 		maxY = MAX(maxY, CGRectGetMaxY(frame));
 	}
 
-	if (self.contentSize.width > maxX) {
-		maxX = self.contentSize.width;
-	}
-	if (self.contentSize.height > maxY) {
-		maxY = self.contentSize.height;
-	}
 	self.contentSize = CGSizeMake(maxX + self.contentSizePadding.width, maxY + self.contentSizePadding.height);
 }
 
