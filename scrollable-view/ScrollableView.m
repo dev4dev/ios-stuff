@@ -24,6 +24,7 @@
 initWithFrame:(CGRect)frame
 {
 	if (self = [super initWithFrame:frame]) {
+		_autoresizeOnKeyboard = YES;
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 	}
@@ -81,6 +82,9 @@ scrollToSubview:(UIView *)subView
 - (void)
 keyboardWillHide:(NSNotification *)notification
 {
+	if (!self.autoresizeOnKeyboard) {
+		return;
+	}
 	NSTimeInterval duration = 0.0;
 	[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&duration];
 	
@@ -95,6 +99,9 @@ keyboardWillHide:(NSNotification *)notification
 - (void)
 keyboardWillShow:(NSNotification *)notification
 {
+	if (!self.autoresizeOnKeyboard) {
+		return;
+	}
 	CGRect kbFrame = CGRectZero;
 	[notification.userInfo[UIKeyboardFrameEndUserInfoKey] getValue:&kbFrame];
 

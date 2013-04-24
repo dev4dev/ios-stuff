@@ -10,6 +10,7 @@
 
 @interface ScrollableView : UIScrollView
 
+@property (nonatomic, assign) BOOL autoresizeOnKeyboard;
 @property (assign, nonatomic) CGSize contentSizePadding;
 
 - (void)scrollToSubview:(UIView*)subView;
