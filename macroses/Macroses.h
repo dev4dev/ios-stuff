@@ -10,5 +10,6 @@
 #define components_Macroses_h
 
 #define OVERRIDE	NSLog(@"[OVERRIDE] function %s:line %d in inherited %@ class.", __PRETTY_FUNCTION__, __LINE__, [self class])
+#define SAFE_SELF		typeof(self) __weak safeSelf = self;
 
 #endif
