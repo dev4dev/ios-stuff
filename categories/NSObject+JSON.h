@@ -12,6 +12,7 @@
 @interface NSObject (JSON)
 
 - (NSString *)JSONRepresentation;
+- (NSString *)prettyJSONRepresentation;
 
 @end
 

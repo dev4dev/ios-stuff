@@ -23,6 +23,18 @@ JSONRepresentation
 	}
 }
 
+- (NSString *)
+prettyJSONRepresentation
+{
+	if ([NSJSONSerialization isValidJSONObject:self]) {
+		NSData* data = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil];
+		NSString* JSONString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		return JSONString;
+	} else {
+		return @"";
+	}
+}
+
 @end
 
 
@@ -45,7 +57,7 @@ JSONValue
 JSONValue
 {
 	NSError* error;
-	id obj = [NSJSONSerialization JSONObjectWithData:self options:0 error:&error];
+	id obj = [NSJSONSerialization JSONObjectWithData:self options:NSJSONReadingAllowFragments error:&error];
 	if (error) {
 		NSLog(@"JSON Error %@", error.localizedDescription);
 	}
