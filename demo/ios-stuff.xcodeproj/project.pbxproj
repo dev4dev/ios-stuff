@@ -137,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				63DAEFA017743CD000A46794 /* categories */,
-				63DAEFA717743CD000A46794 /* macroses */,
+				63DAEFA717743CD000A46794 /* misc */,
 				63DAEFA917743CD000A46794 /* scripts */,
 				63DAEFAB17743CD000A46794 /* views */,
 			);
@@ -158,13 +158,13 @@
 			path = categories;
 			sourceTree = "<group>";
 		};
-		63DAEFA717743CD000A46794 /* macroses */ = {
+		63DAEFA717743CD000A46794 /* misc */ = {
 			isa = PBXGroup;
 			children = (
 				63DAEFA817743CD000A46794 /* Macroses.h */,
 				63DAEFB617743D8D00A46794 /* Types.h */,
 			);
-			path = macroses;
+			path = misc;
 			sourceTree = "<group>";
 		};
 		63DAEFA917743CD000A46794 /* scripts */ = {
