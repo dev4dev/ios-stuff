@@ -59,7 +59,7 @@ set_workFrame:(CGRect)_workFrame
 - (CGFloat)
 top
 {
-	return CGRectGetMinX(self.frame);
+	return CGRectGetMinY(self.frame);
 }
 
 - (void)
@@ -73,7 +73,7 @@ setTop:(CGFloat)top
 - (CGFloat)
 left
 {
-	return CGRectGetMinY(self.frame);
+	return CGRectGetMinX(self.frame);
 }
 
 - (void)
