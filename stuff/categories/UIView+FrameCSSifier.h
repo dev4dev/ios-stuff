@@ -17,8 +17,8 @@
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
 
-- (void)startFrameTransaction;
+- (void)beginFrameTransaction;
 - (void)commitFrameTransaction;
-- (void)cancelFrameTransaction;
+- (void)rollbackFrameTransaction;
 
 @end

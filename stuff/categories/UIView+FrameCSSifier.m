@@ -147,7 +147,7 @@ setHeight:(CGFloat)height
 }
 
 - (void)
-startFrameTransaction
+beginFrameTransaction
 {
 	self._transactionFrame = [NSValue valueWithCGRect:self.frame];
 }
@@ -156,7 +156,7 @@ startFrameTransaction
 commitFrameTransaction
 {
 	NSValue *val = self._transactionFrame;
-	[self cancelFrameTransaction];
+	[self rollbackFrameTransaction];
 	if (val) {
 		CGRect frame = [val CGRectValue];
 		self.frame = frame;
@@ -164,7 +164,7 @@ commitFrameTransaction
 }
 
 - (void)
-cancelFrameTransaction
+rollbackFrameTransaction
 {
 	self._transactionFrame = nil;
 }
